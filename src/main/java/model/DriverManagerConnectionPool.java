@@ -22,13 +22,17 @@ public class DriverManagerConnectionPool {
 	
 	private static Connection createDBConnection() throws SQLException {
 		Connection newConnection = null;
-		String db = "GeekFactoryDB";
+		String db = "geekfactorydb";
 		String username = "root";
-		String password = "root";
+		String password = "Rick_2003";
 
-		newConnection = DriverManager.getConnection("jdbc:mysql://localhost:3306/"+db, username, password);
+		try {
+			newConnection = DriverManager.getConnection("jdbc:mysql://localhost:3306/"+db, username, password);
+			newConnection.setAutoCommit(false);
+		}catch(SQLException e) {
+			e.printStackTrace();		
+		}
 		
-		newConnection.setAutoCommit(false);
 		
 		return newConnection;
 	}
